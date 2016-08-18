@@ -11,9 +11,15 @@ router.get('/', function(req, res, next) {
     }
     console.log('STATUS CODE: ' + response.statusCode);
     if (response.statusCode == 200) {
+      console.log('got a POST request');
       res.send(body);
     }
   })
+});
+
+router.post('/', function(req, res, next) {
+  console.log('got: ', req.body);
+  res.send('hello!');
 });
 
 module.exports = router;
