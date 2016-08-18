@@ -12,11 +12,12 @@
     <title>Simple Sidebar - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="css/poke.css">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,36 +32,67 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
+        <form action="/pokemon" method="post">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Start Bootstrap
+                        PokemonSTOP
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    Name:
+                    <input class="form-control input-sm" type="text">
+                </li>
+                <li> Office:
+                  
+                    <select>
+                       <option value = "Atlanta"> Atlanta </option>
+                       <option value = "Chicago"> Chicago </option>
+                       <option value = "Dallas"> Dallas </option>
+                       <option value = "Houston"> Houston </option>
+                       <option value = "Los Angeles"> Los Angeles </option>
+                       <option value = "New York"> New York </option>
+                       <option value = "San Francisco"> San Francisco </option>
+                       <option value = "Seattle"> Seattle </option>
+                       <option value = "Washington DC"> Washington DC </option>
+                    </select>
+                  
+                </li>
+                <li class="sidebar-brand">
+                     Height:
+                   
+                        <select>
+                       <option value = "48">4 ft.</option>
+                       <option value = "60">5 ft.</option>
+                       <option value = "72">6 ft.</option>
+                      
+                    </select>
+                        <select>
+                       <option value = "0">0 in.</option>
+                       <option value = "1">1 in.</option>
+                       <option value = "2">2 in.</option>
+                       <option value = "3">3 in.</option>
+                       <option value = "4">4 in.</option>
+                       <option value = "5">5 in.</option>
+                       <option value = "6">6 in.</option>
+                       <option value = "7">7 in.</option>
+                       <option value = "8">8 in.</option>
+                       <option value = "9">9 in.</option>
+                       <option value = "10">10 in.</option>
+                       <option value = "11">11 in.</option>
+                      
+                    </select>
+                  
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <input type="submit" id="userSubmit" value="submit">
+                    
                 </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                
             </ul>
         </div>
+        </form>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
