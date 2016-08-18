@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
   console.log('got: ', req.body);
   res.send('hello!');
 });

@@ -40,7 +40,7 @@ function process(){
     payload.city = city;
     
         $.ajax({
-            url: "http://172.16.29.91:3000/pokemon",
+            url: "http://localhost:3000/pokemon",
             type: "POST",
             data: payload,
             success: function(data){
