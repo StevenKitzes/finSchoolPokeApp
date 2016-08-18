@@ -9,14 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Pokemon</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/poke.css">
+    <link href="css/side-bar.css" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +32,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <form action="/pokemon" method="post">
+        <form action="/pokemon" method="get">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -41,10 +41,14 @@
                     </a>
                 </li>
                 <li>
+                    <div class="sidebar-titles">
                     Name:
+                    </div>
                     <input class="form-control input-sm" type="text">
                 </li>
-                <li> Office:
+                <li>   <div class="sidebar-titles">
+                    Office:
+                    </div>
                   
                     <select>
                        <option value = "Atlanta"> Atlanta </option>
@@ -59,8 +63,10 @@
                     </select>
                   
                 </li>
-                <li class="sidebar-brand">
-                     Height:
+                <li>
+                       <div class="sidebar-titles">
+                    Height:
+                    </div>
                    
                         <select>
                        <option value = "48">4 ft.</option>
@@ -100,8 +106,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                        <h1>Pokedex</h1>
+                        <p><link href="css/side-bar.css" rel="stylesheet"></p>
                         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                     </div>
