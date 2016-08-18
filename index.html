@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Pokemon</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -25,41 +25,18 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-       
-function process(){
- var payload = {};
-        var e = document.getElementById("inch");
-    var inch = e.options[e.selectedIndex].value;
-    e = document.getElementById("feet");
-   var feet = e.options[e.selectedIndex].value;
-    e = document.getElementById("city");
-     var city = e.options[e.selectedIndex].value;
-    payload.inch = inch;
-    payload.feet = feet;
-    payload.city = city;
-    
-        $.ajax({
-            url: "http://localhost:3000/pokemon",
-            type: "POST",
-            data: payload,
-            success: function(data){
-                console.log(data);
-            }
-        });
-    
-}
-</script>
     
     
 </head>
 
-<body>
+<body ng-app = "myApp">
+    <script src="js/angularPoke.js"></script>
+    <div  ng-controller="myCtrl">
 
     <div id="wrapper">
 
 
-        <form action="/pokemon" method="post">
+  
 
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -123,7 +100,7 @@ function process(){
                   
                 </li>
                 <li>
-                    <button id="userSubmit" onclick = "process()">Submit</button>
+                    <button ng-click="onSubmit()" id="userSubmit">Submit</button>
                     
                 </li>
                 <li>
@@ -142,13 +119,13 @@ function process(){
                         <h1>Pokedex</h1>
                         <p><link href="css/side-bar.css" rel="stylesheet"></p>
 
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                       
 <!--                        set loadedInformation visibility to 0 when it's ready, currently visible for design testing purposes-->
                         <div id= "loadedInformation">
                         
                             <table class = "table">
                                 <th>Pokemon</th>
-                                <tr><td>pokemon
+                                <tr><td>Your pokemon is: {{pName}}
                                     </td>
                                 <td> {{pokemon}}</td></tr>
                                 
@@ -166,6 +143,7 @@ function process(){
         <!-- /#page-content-wrapper -->
 
     </div>
+</div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -181,6 +159,11 @@ function process(){
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+        
+   
+       
+
+
 
     
     
