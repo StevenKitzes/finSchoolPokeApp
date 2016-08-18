@@ -1,0 +1,20 @@
+var Offices = {
+  "Atlanta":
+    ["psychic", "fairy", "normal", "electric", "steel", "fire"],
+  "Chicago":
+    ["flying", "ice", "grass", "bug", "electricity", "steel", "fight"],
+  "Dallas":
+    ["grass", "flying", "dark", "ghost", "poison", "fight", "bug"],
+  "Houston":
+    ["fire", "ground", "poison", "dragon", "rock", "electric", "normal"],
+  "Los Angeles":
+    ["fight", "normal", "water", "fairy", "dark", "ground"],
+  "NYC":
+    ["steel", "ice", "electric", "normal", "dragon", "water", "dark"],
+  "SF":
+    ["water", "fight", "psychic", "rock", "fairy", "dragon", "ghost"],
+  "Seattle":
+    ["grass", "flying", "dragon", "rock", "ice", "bug", "water"],
+  "Washington DC":
+    ["normal", "flying", "dark", "poison", "fire", "psychic"]
+}
