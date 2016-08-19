@@ -27,6 +27,10 @@
     <![endif]-->
 
     <script>
+      function capFirst(string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
       var officeOnePokemon;
       var officeTwoPokemon;
 
@@ -58,7 +62,7 @@
             payload.office = office2;
           }
           $.ajax({
-                  url: "http://localhost:3000/pokemon",
+                  url: "http://172.16.29.91:3000/pokemon",
                   type: "POST",
                   data: payload,
                   success: function(data){
@@ -107,37 +111,79 @@
         div2.append($('<h3></h3>').text('Office 2: ' + o2name));
         div2.append($('<p></p>').text('Whoa, look!  We found these three Pokémon, all native to ' + o2name + '!'));
 
+        function buildTable(hp, att, def, ag) {
+
+          var table = $('<table></table>');
+
+          var tr1 = $('<tr></tr>');
+          var tr2 = $('<tr></tr>');
+          var td1 = $('<td></td>');
+          var td2 = $('<td></td>');
+          var td3 = $('<td></td>');
+          var td4 = $('<td></td>');
+
+          td1.append(hp);
+          td2.append(att);
+          td3.append(def);
+          td4.append(ag);
+
+          tr1.append(td1, td2);
+          tr2.append(td3, td4);
+
+          table.append(tr1, tr2);
+
+          return table;
+        }
+
         oneFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[0]['id'] + '.png'));
-        oneFirst.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[0]['hp']));
-        oneFirst.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[0]['attack']));
-        oneFirst.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[0]['defense']));
-        oneFirst.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[0]['speed']));
+        oneFirst.append($('<p></p>').text(capFirst(o1[0]['name']).split('-')[0]));
+        oneFirst.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[0]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[0]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o1[0]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[0]['speed'])
+        ));
         oneSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[1]['id'] + '.png'));
-        oneSecond.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[1]['hp']));
-        oneSecond.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[1]['attack']));
-        oneSecond.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[1]['defense']));
-        oneSecond.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[1]['speed']));
+        oneSecond.append($('<p></p>').text(capFirst(o1[1]['name']).split('-')[0]));
+        oneSecond.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[1]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[1]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o1[1]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[1]['speed'])
+        ));
         oneThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[2]['id'] + '.png'));
-        oneThird.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[2]['hp']));
-        oneThird.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[2]['attack']));
-        oneThird.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[2]['defense']));
-        oneThird.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[2]['speed']));
+        oneThird.append($('<p></p>').text(capFirst(o1[2]['name']).split('-')[0]));
+        oneThird.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[2]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[2]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o1[2]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[2]['speed'])
+        ));
 
         twoFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[0]['id'] + '.png'));
-        twoFirst.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[0]['hp']));
-        twoFirst.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[0]['attack']));
-        twoFirst.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[0]['defense']));
-        twoFirst.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[0]['speed']));
+        twoFirst.append($('<p></p>').text(capFirst(o2[0]['name']).split('-')[0]));
+        twoFirst.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[0]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[0]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o2[0]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o2[0]['speed'])
+        ));
         twoSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[1]['id'] + '.png'));
-        twoSecond.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[1]['hp']));
-        twoSecond.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[1]['attack']));
-        twoSecond.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[1]['defense']));
-        twoSecond.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[1]['speed']));
+        twoSecond.append($('<p></p>').text(capFirst(o2[1]['name']).split('-')[0]));
+        twoSecond.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[1]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[1]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o2[1]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o2[1]['speed'])
+        ));
         twoThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[2]['id'] + '.png'));
-        twoThird.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[2]['hp']));
-        twoThird.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[2]['attack']));
-        twoThird.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[2]['defense']));
-        twoThird.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[2]['speed']));
+        twoThird.append($('<p></p>').text(capFirst(o2[2]['name']).split('-')[0]));
+        twoThird.append(buildTable(
+          $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[2]['hp']),
+          $('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[2]['attack']),
+          $('<div></div>').addClass('stat-bar').text('Defense: ' + o2[2]['defense']),
+          $('<div></div>').addClass('stat-bar').text('Agility: ' + o2[2]['speed'])
+        ));
 
         div1.append(oneFirst, oneSecond, oneThird);
         div2.append(twoFirst, twoSecond, twoThird);
