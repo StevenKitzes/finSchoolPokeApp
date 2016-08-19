@@ -2,13 +2,25 @@
 <html lang="en">
 
 <head>
-
+    
+    
+    <style>
+img.stadium {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: 0.15;
+    visibility: hidden;
+}
+</style>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name="author" content="">    
+    
     <title>Pokemon</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <!-- Bootstrap Core CSS -->
@@ -35,6 +47,7 @@
       var officeTwoPokemon;
 
       function onBattle() {
+        var stadium = document.getElementById("stadium").style.visibility = "hidden";
         officeOnePokemon = [];
         officeTwoPokemon = [];
         if($('#office1').val() == $('#office2').val()) {
@@ -84,6 +97,7 @@
       }
 
       function updateViewWithOffices(o1, o2) {
+        var stadium = document.getElementById("stadium").style.visibility = "visible";
         if(o1.length != 3 || o2.length != 3) {
           console.log('waiting on responses from AJAX calls...');
           $('#loadedInformation').html('<h3>Loading...</h3>');
@@ -188,7 +202,7 @@
         div1.append(oneFirst, oneSecond, oneThird);
         div2.append(twoFirst, twoSecond, twoThird);
 
-        outputDiv.append($('<hr>'), div1, $('<hr>'), $('<h1></h1>').text('versus').css('text-align', 'center'), $('<hr>'), div2, $('<hr>'));
+        outputDiv.append($('<hr>'), div1, $('<hr>'), $('<h1></h1>').text('Versus').css('text-align', 'center'), $('<hr>'), div2, $('<hr>'));
 
         console.log('done');
         oneFirst.effect('shake');
@@ -220,6 +234,7 @@
                   <div class="sidebar-titles">
                     <h3>Height Class:</h3>
                   </div>
+                  <center>
                   <select id= "feet" name="feet">
                     <option value = "4">4 ft.</option>
                     <option value = "5">5 ft.</option>
@@ -239,11 +254,13 @@
                     <option value = "10">10 in.</option>
                     <option value = "11">11 in.</option>
                   </select>
+                      </center>
                 </li>
                 <li>
                   <div class="sidebar-titles">
                     <h2>Office 1:</h2>
                   </div>
+                <center>
                   <select id="office1" name= "office1">
                     <option value = "Atlanta"> Atlanta </option>
                     <option value = "Chicago"> Chicago </option>
@@ -255,11 +272,13 @@
                     <option value = "Seattle"> Seattle </option>
                     <option value = "Washington DC"> Washington DC </option>
                   </select>
+                    </center>
                 </li>
                 <li>
                   <div class="sidebar-titles">
                     <h2>Office 2:</h2>
                   </div>
+                   <center>
                   <select id="office2" name= "office2">
                     <option value = "Atlanta"> Atlanta </option>
                     <option value = "Chicago"> Chicago </option>
@@ -271,9 +290,12 @@
                     <option value = "Seattle"> Seattle </option>
                     <option value = "Washington DC"> Washington DC </option>
                   </select>
+                       </center>
                 </li>
                 <li>
+                    <center>
                     <br><button onclick="onBattle()" id="userSubmit">Battle!</button>
+                        </center>
                 </li>
                 <!--<li>
                     <input text="id01">
@@ -284,10 +306,13 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
+        
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
+                        
+                        <img class= "stadium" id="stadium" src="http://orig11.deviantart.net/7a3b/f/2012/238/3/6/pokemon_stadium_hd_by_machriderz-d5cigjg.png " width="100%" height="100%" >
                         <h1>Pokedex <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a></h1>
                         <p><link href="stylesheets/side-bar.css" rel="stylesheet"></p>
 
