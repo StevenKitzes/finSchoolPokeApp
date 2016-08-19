@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+.stat-bar {
+  background: #000088;
+  border-radius: .4em;
+  color: white;
+  margin: 1em;
+  padding: .3em;
 }

@@ -80,6 +80,7 @@ router.post('/', function(req, res, next) {
     var current = pokemonList[i];
     if(current['id'] === targetPokemonId) {
       console.log('located and returning pokemon: ' + current['name']);
+      current['office'] = req.body.office;
       res.send(current);
       break;
     }

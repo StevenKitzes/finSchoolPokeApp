@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pokemon</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="stylesheets/simple-sidebar.css" rel="stylesheet">
+    <link href="stylesheets/side-bar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+      var officeOnePokemon;
+      var officeTwoPokemon;
+
+      function onBattle() {
+        officeOnePokemon = [];
+        officeTwoPokemon = [];
+        if($('#office1').val() == $('#office2').val()) {
+          $('#loadedInformation').html("<h3>An office can't battle itself!  How silly, HAH HAH HAH!</h3>");
+          return;
+        }
+
+        var payload = {};
+        var e = document.getElementById("inches");
+        var inches = e.options[e.selectedIndex].value;
+        e = document.getElementById("feet");
+        var feet = e.options[e.selectedIndex].value;
+        e = document.getElementById("office1");
+        var office1 = e.options[e.selectedIndex].value;
+        e = document.getElementById("office2");
+        var office2 = e.options[e.selectedIndex].value;
+        payload.inches = inches;
+        payload.feet = feet;
+
+        for(var i = 0; i < 6; i++) {
+          if(i < 3) {
+            payload.office = office1;
+          }
+          else {
+            payload.office = office2;
+          }
+          $.ajax({
+                  url: "http://localhost:3000/pokemon",
+                  type: "POST",
+                  data: payload,
+                  success: function(data){
+                      console.log('got pokemon:');
+                      console.log(data);
+                      if(data['office'] == $('#office1').val()) {
+                        officeOnePokemon.push(data);
+                        console.log('pushed to office two');
+                        updateViewWithOffices(officeOnePokemon, officeTwoPokemon);
+                      }
+                      else {
+                        officeTwoPokemon.push(data);
+                        console.log('pushed to office two');
+                        updateViewWithOffices(officeOnePokemon, officeTwoPokemon);
+                      }
+                  }
+          });
+        } // end for loop
+      }
+
+      function updateViewWithOffices(o1, o2) {
+        if(o1.length != 3 || o2.length != 3) {
+          console.log('waiting on responses from AJAX calls...');
+          $('#loadedInformation').html('<h3>Loading...</h3>');
+          return;
+        }
+
+        var o1name = $('#office1').val();
+        var o2name = $('#office2').val();
+
+        var outputDiv = $('#loadedInformation');
+        outputDiv.html('');
+        var div1 = $('<div></div>').css('text-align', 'center');
+        var div2 = $('<div></div>').css('text-align', 'center');
+
+        var oneFirst = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var oneSecond = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var oneThird = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var twoFirst = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var twoSecond = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var twoThird = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+
+        div1.append($('<h3></h3>').text('Office 1: ' + o1name));
+        div1.append($('<p></p>').text('Check it out!  We found these three Pokémon, all native to ' + o1name + '!'));
+
+        div2.append($('<h3></h3>').text('Office 2: ' + o2name));
+        div2.append($('<p></p>').text('Whoa, look!  We found these three Pokémon, all native to ' + o2name + '!'));
+
+        oneFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[0]['id'] + '.png'));
+        oneFirst.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[0]['hp']));
+        oneFirst.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[0]['attack']));
+        oneFirst.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[0]['defense']));
+        oneFirst.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[0]['speed']));
+        oneSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[1]['id'] + '.png'));
+        oneSecond.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[1]['hp']));
+        oneSecond.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[1]['attack']));
+        oneSecond.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[1]['defense']));
+        oneSecond.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[1]['speed']));
+        oneThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[2]['id'] + '.png'));
+        oneThird.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[2]['hp']));
+        oneThird.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o1[2]['attack']));
+        oneThird.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o1[2]['defense']));
+        oneThird.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o1[2]['speed']));
+
+        twoFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[0]['id'] + '.png'));
+        twoFirst.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[0]['hp']));
+        twoFirst.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[0]['attack']));
+        twoFirst.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[0]['defense']));
+        twoFirst.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[0]['speed']));
+        twoSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[1]['id'] + '.png'));
+        twoSecond.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[1]['hp']));
+        twoSecond.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[1]['attack']));
+        twoSecond.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[1]['defense']));
+        twoSecond.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[1]['speed']));
+        twoThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[2]['id'] + '.png'));
+        twoThird.append($('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[2]['hp']));
+        twoThird.append($('<div></div>').addClass('stat-bar').text('Attack strength: ' + o2[2]['attack']));
+        twoThird.append($('<div></div>').addClass('stat-bar').text('Defense: ' + o2[2]['defense']));
+        twoThird.append($('<div></div>').addClass('stat-bar').text('Agility: ' + o2[2]['speed']));
+
+        div1.append(oneFirst, oneSecond, oneThird);
+        div2.append(twoFirst, twoSecond, twoThird);
+
+        outputDiv.append($('<hr>'), div1, $('<hr>'), $('<h1></h1>').text('versus').css('text-align', 'center'), $('<hr>'), div2, $('<hr>'));
+
+        console.log('done');
+        oneFirst.effect('shake');
+      }
+    </script>
+
+
+</head>
+
+<body ng-app = "myApp">
+    <script src="javascripts/angularPoke.js"></script>
+    <div  ng-controller="myCtrl">
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        PokemonSTOP
+                    </a>
+                </li>
+                <!--<li>
+                    <div class="sidebar-titles">
+                    Name:
+                    </div>
+                    <input class="form-control input-sm" type="text">
+                </li>-->
+                <li>
+                  <div class="sidebar-titles">
+                    <h3>Height Class:</h3>
+                  </div>
+                  <select id= "feet" name="feet">
+                    <option value = "4">4 ft.</option>
+                    <option value = "5">5 ft.</option>
+                    <option value = "6">6 ft.</option>
+                  </select>
+                  <select id = "inches" name="inches">
+                    <option value = "0">0 in.</option>
+                    <option value = "1">1 in.</option>
+                    <option value = "2">2 in.</option>
+                    <option value = "3">3 in.</option>
+                    <option value = "4">4 in.</option>
+                    <option value = "5">5 in.</option>
+                    <option value = "6">6 in.</option>
+                    <option value = "7">7 in.</option>
+                    <option value = "8">8 in.</option>
+                    <option value = "9">9 in.</option>
+                    <option value = "10">10 in.</option>
+                    <option value = "11">11 in.</option>
+                  </select>
+                </li>
+                <li>
+                  <div class="sidebar-titles">
+                    <h2>Office 1:</h2>
+                  </div>
+                  <select id="office1" name= "office1">
+                    <option value = "Atlanta"> Atlanta </option>
+                    <option value = "Chicago"> Chicago </option>
+                    <option value = "Dallas"> Dallas </option>
+                    <option value = "Houston"> Houston </option>
+                    <option value = "Los Angeles"> Los Angeles </option>
+                    <option value = "New York"> New York </option>
+                    <option value = "San Francisco"> San Francisco </option>
+                    <option value = "Seattle"> Seattle </option>
+                    <option value = "Washington DC"> Washington DC </option>
+                  </select>
+                </li>
+                <li>
+                  <div class="sidebar-titles">
+                    <h2>Office 2:</h2>
+                  </div>
+                  <select id="office2" name= "office2">
+                    <option value = "Atlanta"> Atlanta </option>
+                    <option value = "Chicago"> Chicago </option>
+                    <option value = "Dallas"> Dallas </option>
+                    <option value = "Houston"> Houston </option>
+                    <option value = "Los Angeles"> Los Angeles </option>
+                    <option value = "New York"> New York </option>
+                    <option value = "San Francisco"> San Francisco </option>
+                    <option value = "Seattle"> Seattle </option>
+                    <option value = "Washington DC"> Washington DC </option>
+                  </select>
+                </li>
+                <li>
+                    <br><button onclick="onBattle()" id="userSubmit">Battle!</button>
+                </li>
+                <!--<li>
+                    <input text="id01">
+                </li>-->
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Pokedex <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a></h1>
+                        <p><link href="stylesheets/side-bar.css" rel="stylesheet"></p>
+
+<!--                        set loadedInformation visibility to 0 when it's ready, currently visible for design testing purposes-->
+                        <div id= "loadedInformation"><h3>Submit a height class and two offices to see which is strongest!</h3></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+</div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="javascripts/jquery.js"></script>
+
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="javascripts/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
