@@ -27,7 +27,7 @@ app.controller('myCtrl', function($scope, $http){
                 }
         });*/
         
-        $http.post('http://172.16.29.91:3000/pokemon', payload).success(function() {
+        $http.post('http://172.16.29.91:3000/pokemon', payload).then( function successCallBack(data) {
             $scope.pName = data.name;
         });
 
