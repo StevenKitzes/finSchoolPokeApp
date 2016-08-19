@@ -98,12 +98,24 @@
         var div1 = $('<div></div>').css('text-align', 'center');
         var div2 = $('<div></div>').css('text-align', 'center');
 
-        var oneFirst = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
-        var oneSecond = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
-        var oneThird = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
-        var twoFirst = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
-        var twoSecond = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
-        var twoThird = $('<div></div>').css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em');
+        var oneFirst = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'oneFirst');
+        var oneSecond = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'oneSecond');
+        var oneThird = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'oneThird');
+        var twoFirst = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'twoFirst');
+        var twoSecond = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'twoSecond');
+        var twoThird = $('<div></div>')
+          .css('display', 'inline-block').css('border', '1px solid black').css('border-radius', '.6em').css('margin', '1em')
+          .attr('id', 'twoThird');
 
         div1.append($('<h3></h3>').text('Office 1: ' + o1name));
         div1.append($('<p></p>').text('Check it out!  We found these three Pokémon, all native to ' + o1name + '!'));
@@ -135,7 +147,10 @@
           return table;
         }
 
-        oneFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[0]['id'] + '.png'));
+        oneFirst.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[0]['id'] + '.png')
+          .attr('id', 'o1i1')
+          .addClass('shakeimage'));
         oneFirst.append($('<p></p>').text(capFirst(o1[0]['name']).split('-')[0]));
         oneFirst.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[0]['hp']),
@@ -143,7 +158,9 @@
           $('<div></div>').addClass('stat-bar').text('Defense: ' + o1[0]['defense']),
           $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[0]['speed'])
         ));
-        oneSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[1]['id'] + '.png'));
+        oneSecond.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[1]['id'] + '.png')
+          .attr('id', 'o1i2'));
         oneSecond.append($('<p></p>').text(capFirst(o1[1]['name']).split('-')[0]));
         oneSecond.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[1]['hp']),
@@ -151,7 +168,9 @@
           $('<div></div>').addClass('stat-bar').text('Defense: ' + o1[1]['defense']),
           $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[1]['speed'])
         ));
-        oneThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[2]['id'] + '.png'));
+        oneThird.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o1[2]['id'] + '.png')
+          .attr('id', 'o1i3'));
         oneThird.append($('<p></p>').text(capFirst(o1[2]['name']).split('-')[0]));
         oneThird.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o1[2]['hp']),
@@ -160,7 +179,9 @@
           $('<div></div>').addClass('stat-bar').text('Agility: ' + o1[2]['speed'])
         ));
 
-        twoFirst.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[0]['id'] + '.png'));
+        twoFirst.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[0]['id'] + '.png')
+          .attr('id', 'o2i1'));
         twoFirst.append($('<p></p>').text(capFirst(o2[0]['name']).split('-')[0]));
         twoFirst.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[0]['hp']),
@@ -168,7 +189,9 @@
           $('<div></div>').addClass('stat-bar').text('Defense: ' + o2[0]['defense']),
           $('<div></div>').addClass('stat-bar').text('Agility: ' + o2[0]['speed'])
         ));
-        twoSecond.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[1]['id'] + '.png'));
+        twoSecond.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[1]['id'] + '.png')
+          .attr('id', 'o2i2'));
         twoSecond.append($('<p></p>').text(capFirst(o2[1]['name']).split('-')[0]));
         twoSecond.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[1]['hp']),
@@ -176,7 +199,9 @@
           $('<div></div>').addClass('stat-bar').text('Defense: ' + o2[1]['defense']),
           $('<div></div>').addClass('stat-bar').text('Agility: ' + o2[1]['speed'])
         ));
-        twoThird.append($('<img>').attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[2]['id'] + '.png'));
+        twoThird.append($('<img>')
+          .attr('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + o2[2]['id'] + '.png')
+          .attr('id', 'o2i3'));
         twoThird.append($('<p></p>').text(capFirst(o2[2]['name']).split('-')[0]));
         twoThird.append(buildTable(
           $('<div></div>').addClass('stat-bar').text('Hit points: ' + o2[2]['hp']),
@@ -188,10 +213,91 @@
         div1.append(oneFirst, oneSecond, oneThird);
         div2.append(twoFirst, twoSecond, twoThird);
 
-        outputDiv.append($('<hr>'), div1, $('<hr>'), $('<h1></h1>').text('versus').css('text-align', 'center'), $('<hr>'), div2, $('<hr>'));
+        outputDiv.append($('<hr>'), div1, $('<hr>'), $('<button></button>').text('FIGHT!').attr('id', 'fightButton'), $('<hr>'), div2, $('<hr>'));
 
         console.log('done');
-        oneFirst.effect('shake');
+
+        $('#fightButton').click(fight);
+        //FIGHT
+      }
+
+      function fight() {
+        checkWinner();
+        console.log('FIGHT clicked');
+        if(officeOnePokemon.length < 1 || officeTwoPokemon.length < 1) {
+          console.log('winner detected');
+        }
+        var mon1 = officeOnePokemon[0];
+        var mon2 = officeTwoPokemon[0];
+        while(mon1['hp'] > 0 && mon2['hp'] > 0) {
+          mon1['hp'] -= mon2['attack'];
+          mon2['hp'] -= mon1['attack'];
+        }
+        if(mon1['hp'] < 1) {
+          console.log(mon1['name'] + ' was killed!');
+          officeOnePokemon.splice(0,1);
+          if($('#oneFirst').hasOwnProperty('length')) {
+            console.log('removing oneFirst');
+            $('#o1i1').addClass('shaker');
+            setInterval(function() {
+              $('#oneFirst').remove();
+            }, 1000);
+          }
+          else if($('#oneSecond').hasOwnProperty('length')) {
+            console.log('removing oneSecond');
+            $('#o1i2').addClass('shaker');
+            setInterval(function() {
+              $('#oneSecond').remove();
+            }, 1000);
+          }
+          else {
+            console.log('removing oneThird');
+            $('#o1i3').addClass('shaker');
+            setInterval(function() {
+              $('#oneThird').remove();
+            }, 1000);
+          }
+        }
+        if(mon2['hp'] < 1) {
+          console.log(mon2['name'] + ' was killed!');
+          officeTwoPokemon.splice(0,1);
+          if($('#twoFirst').hasOwnProperty('length')) {
+            console.log('removing twoFirst');
+            $('#o2i1').addClass('shaker');
+            setInterval(function() {
+              $('#twoFirst').remove();
+            }, 1000);
+          }
+          else if($('#twoSecond').hasOwnProperty('length')) {
+            console.log('removing twoSecond');
+            $('#o2i2').addClass('shaker');
+            setInterval(function() {
+              $('#twoSecond').remove();
+            }, 1000);
+          }
+          else {
+            console.log('removing twoThird');
+            $('#o2i3').addClass('shaker');
+            setInterval(function() {
+              $('#twoThird').remove();
+            }, 1000);
+          }
+        }
+      }
+
+      function checkWinner() {
+        if(officeOnePokemon.length < 1 && officeTwoPokemon.length < 1) {
+          $('#loadedInformation').html('');
+          $('#loadedInformation').append('<h1></h1>').text("It's a tie!!  Everyone is dead!");
+        }
+        else if(officeOnePokemon.length < 1) {
+          $('#loadedInformation').html('');
+          $('#loadedInformation').append('<h1></h1>').text("Office 2 won!!");
+        }
+        else if(officeTwoPokemon.length < 1){
+          $('#loadedInformation').html('');
+          $('#loadedInformation').append('<h1></h1>').text("Office 1 won!!");
+        }
       }
     </script>
 
@@ -306,9 +412,6 @@
     <!-- jQuery -->
     <script src="javascripts/jquery.js"></script>
 
-
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
     <!-- Bootstrap Core JavaScript -->
     <script src="javascripts/bootstrap.min.js"></script>
 
@@ -319,15 +422,6 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
