@@ -2,7 +2,18 @@
 <html lang="en">
 
 <head>
-
+    
+    <style>
+img.stadium {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: 0.15;
+    visibility: hidden;
+}
+</style>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -10,14 +21,17 @@
     <meta name="author" content="">
 
     <title>Pokemon</title>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="stylesheets/bootstrap.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
     <link href="stylesheets/simple-sidebar.css" rel="stylesheet">
-    <link href="stylesheets/side-bar.css" rel="stylesheet">
+    <link href="./stylesheets/side-bar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,13 +45,18 @@
       var officeTwoPokemon;
 
       function onBattle() {
+//          var musicButton =
+        var stadium = document.getElementById("stadium").style.visibility = "hidden";
+        document.getElementById("pause").style.visibility = 'visible';
+          
+          
         officeOnePokemon = [];
         officeTwoPokemon = [];
         if($('#office1').val() == $('#office2').val()) {
           $('#loadedInformation').html("<h3>An office can't battle itself!  How silly, HAH HAH HAH!</h3>");
           return;
         }
-
+          
         var payload = {};
         var e = document.getElementById("inches");
         var inches = e.options[e.selectedIndex].value;
@@ -148,7 +167,38 @@
         oneFirst.effect('shake');
       }
     </script>
+    
+    <script>
+    $(document).ready(function() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'sounds/battle.mp3');
+        //audioElement.setAttribute('autoplay', 'autoplay');
+        //audioElement.load()
 
+        $.get();
+        var submitButton = document.getElementById('userSubmit').addEventListener("click", function() {
+            audioElement.play();
+        }, true);
+        
+        var pauseElement = document.getElementById("pause").addEventListener("click", function() {
+            if(audioElement.paused)
+                audioElement.play();
+            else
+                audioElement.pause();
+        });
+        /*audioElement.addEventListener("load", function() {
+            audioElement.play();
+        }, true);*/
+
+        /*$('.play').click(function() {
+            audioElement.play();
+        });
+
+        $('.pause').click(function() {
+            audioElement.pause();
+        });*/
+    });
+</script> 
 
 </head>
 
@@ -228,6 +278,7 @@
                 </li>
                 <li>
                     <br><button onclick="onBattle()" id="userSubmit">Battle!</button>
+                    <br><br><button id="pause" style="visibility: hidden">Start/Stop Music</button>
                 </li>
                 <!--<li>
                     <input text="id01">
@@ -238,7 +289,8 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div class="background_pika">
+        <div id="page-content-wrapper" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -251,6 +303,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!-- /#page-content-wrapper -->
 
     </div>
