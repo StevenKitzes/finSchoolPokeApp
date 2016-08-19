@@ -53,6 +53,13 @@ img.stadium {
         officeTwoPokemon = [];
         if($('#office1').val() == $('#office2').val()) {
           $('#loadedInformation').html("<h3>An office can't battle itself!  How silly, HAH HAH HAH!</h3>");
+          var img = $('<img></img>');
+          img.attr('src','https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+          img.attr('width','600');
+          img.attr('height','600');
+          //img.addClass('sideways');
+          img.addClass('spins');
+          $('#loadedInformation').append(img);
           return;
         }
 
@@ -232,7 +239,8 @@ img.stadium {
 
         console.log('done');
 
-        $('#fightButton').click(fight);
+        document.getElementById('fightButton').addEventListener('click', fight, false);
+        //$('#fightButton').click(fight);
         //FIGHT
       }
 
@@ -251,67 +259,90 @@ img.stadium {
         if(mon1['hp'] < 1) {
           console.log(mon1['name'] + ' was killed!');
           officeOnePokemon.splice(0,1);
-          if($('#oneFirst').hasOwnProperty('length')) {
+          //if($('#oneFirst').hasOwnProperty('length')) {
+          if(document.getElementById('oneFirst')) {
             console.log('removing oneFirst');
             $('#o1i1').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#oneFirst').remove();
+              console.log('someone died 1');
             }, 1000);
           }
-          else if($('#oneSecond').hasOwnProperty('length')) {
+          //else if($('#oneSecond').hasOwnProperty('length')) {
+          else if(document.getElementById('oneSecond')) {
             console.log('removing oneSecond');
             $('#o1i2').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#oneSecond').remove();
+              console.log('someone died 2');
             }, 1000);
           }
           else {
             console.log('removing oneThird');
             $('#o1i3').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#oneThird').remove();
+              console.log('someone died 3');
             }, 1000);
           }
         }
         if(mon2['hp'] < 1) {
           console.log(mon2['name'] + ' was killed!');
           officeTwoPokemon.splice(0,1);
-          if($('#twoFirst').hasOwnProperty('length')) {
+          //if($('#twoFirst').hasOwnProperty('length')) {
+          if(document.getElementById('twoFirst')) {
             console.log('removing twoFirst');
             $('#o2i1').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#twoFirst').remove();
+              console.log('someone died a ');
             }, 1000);
           }
-          else if($('#twoSecond').hasOwnProperty('length')) {
+          //else if($('#twoSecond').hasOwnProperty('length')) {
+          else if(document.getElementById('twoSecond')) {
             console.log('removing twoSecond');
             $('#o2i2').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#twoSecond').remove();
+              console.log('someone died b ');
             }, 1000);
           }
           else {
             console.log('removing twoThird');
             $('#o2i3').addClass('shaker');
-            setInterval(function() {
+            setTimeout(function() {
               $('#twoThird').remove();
+              console.log('someone died c');
             }, 1000);
           }
         }
       }
 
       function checkWinner() {
+        var winElement = $('<h1></h1>');
         if(officeOnePokemon.length < 1 && officeTwoPokemon.length < 1) {
           $('#loadedInformation').html('');
-          $('#loadedInformation').append('<h1></h1>').text("It's a tie!!  Everyone is dead!");
+          winElement.text("It's a tie!!");
+          var span = $('<span></span>');
+          span.css('font-size', '10em');
+          span.text('EVERYONE IS DEAD');
+          var img = $('<img></img>');
+          img.attr('src','https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+          img.attr('width','600');
+          img.attr('height','600');
+          img.addClass('sideways');
+          //img.addClass('spins');
+          $('#loadedInformation').append(winElement,span,$('<br>'),img);
         }
         else if(officeOnePokemon.length < 1) {
           $('#loadedInformation').html('');
-          $('#loadedInformation').append('<h1></h1>').text("Office 2 won!!");
+          winElement.text($('#office2').val() + " won!!  Go " + $('#office2').val() + "!!");
+          $('#loadedInformation').append(winElement);
         }
         else if(officeTwoPokemon.length < 1){
           $('#loadedInformation').html('');
-          $('#loadedInformation').append('<h1></h1>').text("Office 1 won!!");
+          winElement.text($('#office1').val() + " won!!  Go " + $('#office1').val() + "!!");
+          $('#loadedInformation').append(winElement);
         }
       }
     </script>
@@ -325,6 +356,7 @@ img.stadium {
 
         $.get();
         var submitButton = document.getElementById('userSubmit').addEventListener("click", function() {
+          audioElement.currentTime=0;
             audioElement.play();
         }, true);
 
@@ -451,8 +483,8 @@ img.stadium {
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <img class= "stadium" id="stadium" src="http://orig11.deviantart.net/7a3b/f/2012/238/3/6/pokemon_stadium_hd_by_machriderz-d5cigjg.png " width="100%" height="100%" >
-                        <h1>Pokedex <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a></h1>
+                        <img class= "stadium" id="stadium" src="http://orig11.deviantart.net/7a3b/f/2012/238/3/6/pokemon_stadium_hd_by_machriderz-d5cigjg.png ">
+                        <h1>PokéMelée <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a></h1>
                         <p><link href="stylesheets/side-bar.css" rel="stylesheet"></p>
 
 <!--                        set loadedInformation visibility to 0 when it's ready, currently visible for design testing purposes-->
