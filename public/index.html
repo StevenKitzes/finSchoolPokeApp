@@ -83,7 +83,8 @@ img.stadium {
             payload.office = office2;
           }
           $.ajax({
-                  url: "http://172.16.29.91:3000/pokemon",
+                  //url: "http://172.16.29.91:3000/pokemon",
+                  url: "/pokemon",
                   type: "POST",
                   data: payload,
                   success: function(data){
