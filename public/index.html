@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-
-
     <style>
 img.stadium {
     position: absolute;
@@ -14,7 +12,6 @@ img.stadium {
     visibility: hidden;
 }
 </style>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -22,6 +19,9 @@ img.stadium {
     <meta name="author" content="">
 
     <title>Pokemon</title>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="stylesheets/bootstrap.css" rel="stylesheet">
@@ -29,7 +29,7 @@ img.stadium {
 
     <!-- Custom CSS -->
     <link href="stylesheets/simple-sidebar.css" rel="stylesheet">
-    <link href="stylesheets/side-bar.css" rel="stylesheet">
+    <link href="./stylesheets/side-bar.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,6 +48,7 @@ img.stadium {
 
       function onBattle() {
         var stadium = document.getElementById("stadium").style.visibility = "hidden";
+        document.getElementById("pause").style.visibility = 'visible';
         officeOnePokemon = [];
         officeTwoPokemon = [];
         if($('#office1').val() == $('#office2').val()) {
@@ -315,6 +316,37 @@ img.stadium {
       }
     </script>
 
+    <script>
+    $(document).ready(function() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'sounds/battle.mp3');
+        //audioElement.setAttribute('autoplay', 'autoplay');
+        //audioElement.load()
+
+        $.get();
+        var submitButton = document.getElementById('userSubmit').addEventListener("click", function() {
+            audioElement.play();
+        }, true);
+
+        var pauseElement = document.getElementById("pause").addEventListener("click", function() {
+            if(audioElement.paused)
+                audioElement.play();
+            else
+                audioElement.pause();
+        });
+        /*audioElement.addEventListener("load", function() {
+            audioElement.play();
+        }, true);*/
+
+        /*$('.play').click(function() {
+            audioElement.play();
+        });
+
+        $('.pause').click(function() {
+            audioElement.pause();
+        });*/
+    });
+</script>
 
 </head>
 
@@ -402,6 +434,7 @@ img.stadium {
                     <center>
                     <br><button onclick="onBattle()" id="userSubmit">Battle!</button>
                         </center>
+                    <br><br><button id="pause" style="visibility: hidden">Start/Stop Music</button>
                 </li>
                 <!--<li>
                     <input text="id01">
@@ -412,8 +445,8 @@ img.stadium {
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-
-        <div id="page-content-wrapper">
+        <div class="background_pika">
+        <div id="page-content-wrapper" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -428,9 +461,8 @@ img.stadium {
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
-
     </div>
+        <!-- /#page-content-wrapper -->
 </div>
     <!-- /#wrapper -->
 
